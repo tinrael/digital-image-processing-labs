@@ -11,11 +11,11 @@ imshowpair(originalImage, filteredImage, 'montage');
     This function supposes 'numOfRows' and 'numOfColumns' to be odd positive integers (not necessarily the same).
 %}
 function filteredImage = applyRectangleMedianFilter(originalImage, numOfRows, numOfColumns)
-    filteredImage = zeros(size(originalImage, 1) + 2, size(originalImage, 2) + 2);
-    filteredImage(2:(end - 1), 2:(end - 1)) = originalImage;
-    
     offsetX = numOfColumns - ceil(numOfColumns / 2);
     offsetY = numOfRows - ceil(numOfRows / 2);
+    
+    filteredImage = zeros(size(originalImage, 1) + 2 * offsetY, size(originalImage, 2) + 2 * offsetX);
+    filteredImage(ceil(numOfRows / 2):(end - offsetY), ceil(numOfColumns / 2):(end - offsetX)) = originalImage;
     
     for i = ceil(numOfRows / 2):(size(filteredImage, 1) - offsetY)
         for j = ceil(numOfColumns / 2):(size(filteredImage, 2) - offsetX)
