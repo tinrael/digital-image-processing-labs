@@ -2,9 +2,15 @@ clc;
 clear;
 
 originalImage = imread('saturn2.gif');
-filteredImage = applyRectangleMedianFilter(originalImage, 3, 3);
+imshow(originalImage);
 
-imshowpair(originalImage, filteredImage, 'montage');
+rectangleFilteredImage = applyRectangleMedianFilter(originalImage, 3, 3);
+figure;
+imshow(rectangleFilteredImage);
+
+crossFilteredImage = applyCrossMedianFilter(originalImage, 3, 4);
+figure;
+imshow(crossFilteredImage);
 
 %{
     The window of this 2D median filter is a rectangle (a matrix which has 'numOfRows' rows and 'numOfColumns' columns).
