@@ -30,9 +30,10 @@ function filteredImage = applyRectangleMedianFilter(originalImage, numOfRows, nu
     
     for i = ceil(numOfRows / 2):(size(filteredImage, 1) - offsetY)
         for j = ceil(numOfColumns / 2):(size(filteredImage, 2) - offsetX)
-            window = filteredImage((i - (offsetY - differenceOffsetY)):(i + offsetY), (j - (offsetX - differenceOffsetX)):(j + offsetX));
+            % the window
+            rectangle = filteredImage((i - (offsetY - differenceOffsetY)):(i + offsetY), (j - (offsetX - differenceOffsetX)):(j + offsetX));
             
-            v = reshape(window, 1, []);
+            v = reshape(rectangle, 1, []);
             v = sort(v);
             
             middleIndex = ceil(size(v, 2) / 2);
@@ -75,7 +76,7 @@ function filteredImage = applyCrossMedianFilter(originalImage, crossHeight, cros
             % the elements on the cross's vertical line below the (i, j) (not including (i, j))
             below = transpose(filteredImage((i + 1):(i + offsetY), j));
             
-            cross = [horizontal above below];
+            cross = [horizontal above below]; % the window
             cross = sort(cross);
             
             middleIndex = ceil(size(cross, 2) / 2);
