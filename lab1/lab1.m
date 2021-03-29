@@ -6,10 +6,18 @@ imshow(originalImage);
 
 rectangleFilteredImage = applyRectangleMedianFilter(originalImage, 3, 3);
 figure;
+%{
+    TODO: fix the bug.
+    Incorrect display due to different types of matrices 'originalImage' (uint8) and 'rectangleFilteredImage' (double).
+%}
 imshow(rectangleFilteredImage);
 
 crossFilteredImage = applyCrossMedianFilter(originalImage, 3, 4);
 figure;
+%{
+    TODO: fix the bug.
+    Incorrect display due to different types of matrices 'originalImage' (uint8) and 'crossFilteredImage' (double).
+%}
 imshow(crossFilteredImage);
 
 %{
