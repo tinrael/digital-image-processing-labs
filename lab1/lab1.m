@@ -2,15 +2,26 @@ clc;
 clear;
 
 originalImage = imread('saturn2.gif');
+figure;
 imshow(originalImage);
 
-rectangleFilteredImage = applyRectangleMedianFilter(originalImage, 3, 3);
+% filteredImage = applyRectangleMedianFilter(originalImage, 3, 3); % worse, because more blurred
+filteredImage = applyCrossMedianFilter(originalImage, 3, 4); % beter, because less blurred
 figure;
-imshow(rectangleFilteredImage);
+imshow(filteredImage);
+figure;
+imshowpair(originalImage, filteredImage, 'montage');
 
-crossFilteredImage = applyCrossMedianFilter(originalImage, 3, 4);
+originalImage = imread('saturn3.gif');
 figure;
-imshow(crossFilteredImage);
+imshow(originalImage);
+
+% filteredImage = applyRectangleMedianFilter(originalImage, 4, 5); % worse, because more blurred
+filteredImage = applyCrossMedianFilter(originalImage, 5, 6); % beter, because less blurred
+figure;
+imshow(filteredImage);
+figure;
+imshowpair(originalImage, filteredImage, 'montage');
 
 %{
     The window of this 2D median filter is a rectangle (a matrix which has 'numOfRows' rows and 'numOfColumns' columns).
