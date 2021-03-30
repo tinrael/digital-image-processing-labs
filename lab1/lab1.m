@@ -6,7 +6,7 @@ figure;
 imshow(originalImage);
 
 % filteredImage = applyRectangleMedianFilter(originalImage, 3, 3); % worse, because more blurred
-filteredImage = applyCrossMedianFilter(originalImage, 3, 4); % beter, because less blurred
+filteredImage = applyCrossMedianFilter(originalImage, 3, 4); % better, because less blurred
 figure;
 imshow(filteredImage);
 figure;
@@ -17,7 +17,7 @@ figure;
 imshow(originalImage);
 
 % filteredImage = applyRectangleMedianFilter(originalImage, 4, 5); % worse, because more blurred
-filteredImage = applyCrossMedianFilter(originalImage, 5, 6); % beter, because less blurred
+filteredImage = applyCrossMedianFilter(originalImage, 5, 6); % better, because less blurred
 figure;
 imshow(filteredImage);
 figure;
