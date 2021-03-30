@@ -57,6 +57,8 @@ function filteredImage = applyRectangleMedianFilter(originalImage, numOfRows, nu
             filteredImage(i, j) = v(middleIndex);
         end
     end
+    
+    filteredImage = filteredImage(ceil(numOfRows / 2):(size(filteredImage, 1) - offsetY), ceil(numOfColumns / 2):(size(filteredImage, 2) - offsetX));
 end
 
 %{
@@ -100,4 +102,6 @@ function filteredImage = applyCrossMedianFilter(originalImage, crossHeight, cros
             filteredImage(i, j) = cross(middleIndex);
         end
     end
+    
+    filteredImage = filteredImage(ceil(crossHeight / 2):(size(filteredImage, 1) - offsetY), ceil(crossWidth / 2):(size(filteredImage, 2) - offsetX));
 end
