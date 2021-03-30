@@ -6,18 +6,10 @@ imshow(originalImage);
 
 rectangleFilteredImage = applyRectangleMedianFilter(originalImage, 3, 3);
 figure;
-%{
-    TODO: fix the bug.
-    Incorrect display due to different types of matrices 'originalImage' (uint8) and 'rectangleFilteredImage' (double).
-%}
 imshow(rectangleFilteredImage);
 
 crossFilteredImage = applyCrossMedianFilter(originalImage, 3, 4);
 figure;
-%{
-    TODO: fix the bug.
-    Incorrect display due to different types of matrices 'originalImage' (uint8) and 'crossFilteredImage' (double).
-%}
 imshow(crossFilteredImage);
 
 %{
@@ -39,7 +31,7 @@ function filteredImage = applyRectangleMedianFilter(originalImage, numOfRows, nu
         differenceOffsetY = 1;
     end
     
-    filteredImage = zeros(size(originalImage, 1) + 2 * offsetY - differenceOffsetY, size(originalImage, 2) + 2 * offsetX - differenceOffsetX);
+    filteredImage = zeros(size(originalImage, 1) + 2 * offsetY - differenceOffsetY, size(originalImage, 2) + 2 * offsetX - differenceOffsetX, class(originalImage));
     filteredImage(ceil(numOfRows / 2):(end - offsetY), ceil(numOfColumns / 2):(end - offsetX)) = originalImage;
     
     for i = ceil(numOfRows / 2):(size(filteredImage, 1) - offsetY)
@@ -76,7 +68,7 @@ function filteredImage = applyCrossMedianFilter(originalImage, crossHeight, cros
         differenceOffsetY = 1;
     end
     
-    filteredImage = zeros(size(originalImage, 1) + 2 * offsetY - differenceOffsetY, size(originalImage, 2) + 2 * offsetX - differenceOffsetX);
+    filteredImage = zeros(size(originalImage, 1) + 2 * offsetY - differenceOffsetY, size(originalImage, 2) + 2 * offsetX - differenceOffsetX, class(originalImage));
     filteredImage(ceil(crossHeight / 2):(end - offsetY), ceil(crossWidth / 2):(end - offsetX)) = originalImage;
     
     for i = ceil(crossHeight / 2):(size(filteredImage, 1) - offsetY)
