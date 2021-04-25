@@ -16,6 +16,8 @@ eqn4 = diff(epsilon, alpha) == 0;
 eqn5 = diff(epsilon, beta) == 0;
 eqn6 = diff(epsilon, gamma) == 0;
 
+[A, B] = equationsToMatrix([eqn1, eqn2, eqn3, eqn4, eqn5, eqn6], [a, b, c, alpha, beta, gamma]);
+
 coefficients = solve([eqn1, eqn2, eqn3, eqn4, eqn5, eqn6], [a, b, c, alpha, beta, gamma]);
 
 syms grad(x, y)
