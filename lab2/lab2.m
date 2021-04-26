@@ -1,7 +1,7 @@
 clc;
 clear;
 
-% f(x, y) is a surface of the second order
+% f(x, y) is an approximating surface of the second order
 syms f(x, y) a b c alpha beta gamma
 f(x, y) = a*x^2 + b*y^2 + c*x*y + alpha*x + beta*y + gamma;
 
