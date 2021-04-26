@@ -1,9 +1,11 @@
 clc;
 clear;
 
+% f(x, y) is an approximating plane
 syms f(x, y) a b c alpha beta gamma
 f(x, y) = a*x^2 + b*y^2 + c*x*y + alpha*x + beta*y + gamma;
 
+% g(x, y) is a window
 syms g(x, y)
 epsilon = (f(x-1, y-1) - g(x-1, y-1))^2 + (f(x-1, y) - g(x-1, y))^2 + (f(x-1, y+1) - g(x-1, y+1))^2 ... 
     + (f(x, y-1) - g(x, y-1))^2 + (f(x, y) - g(x, y))^2 + (f(x, y+1) - g(x, y+1))^2 ... 
@@ -29,6 +31,7 @@ resultImage = zeros(size(originalImage), class(originalImage));
 % x is a row, y is a column
 for x = 2:(size(originalImage, 1) - 1)
     for y = 2:(size(originalImage, 2) - 1)
+        % the line below is equivalent to: resultImage(x, y) = grad(x, y);
         resultImage(x, y) = sqrt((originalImage(x - 1, y - 1)/6 - y*(originalImage(x - 1, y - 1)/4 - originalImage(x - 1, y + 1)/4 - originalImage(x + 1, y - 1)/4 + originalImage(x + 1, y + 1)/4) + originalImage(x - 1, y + 1)/6 - originalImage(x + 1, y - 1)/6 - originalImage(x + 1, y + 1)/6 - x*(originalImage(x - 1, y - 1)/3 + originalImage(x - 1, y + 1)/3 + originalImage(x + 1, y - 1)/3 + originalImage(x + 1, y + 1)/3 - (2*originalImage(x, y))/3 - (2*originalImage(x, y - 1))/3 - (2*originalImage(x, y + 1))/3 + originalImage(x - 1, y)/3 + originalImage(x + 1, y)/3) - (2*x*originalImage(x, y))/3 - (2*x*originalImage(x, y - 1))/3 - (2*x*originalImage(x, y + 1))/3 + (x*originalImage(x - 1, y))/3 + (x*originalImage(x + 1, y))/3 + originalImage(x - 1, y)/6 - originalImage(x + 1, y)/6 + (x*originalImage(x - 1, y - 1))/3 + (x*originalImage(x - 1, y + 1))/3 + (x*originalImage(x + 1, y - 1))/3 + (x*originalImage(x + 1, y + 1))/3 + (y*originalImage(x - 1, y - 1))/4 - (y*originalImage(x - 1, y + 1))/4 - (y*originalImage(x + 1, y - 1))/4 + (y*originalImage(x + 1, y + 1))/4)^2 + (originalImage(x - 1, y - 1)/6 - x*(originalImage(x - 1, y - 1)/4 - originalImage(x - 1, y + 1)/4 - originalImage(x + 1, y - 1)/4 + originalImage(x + 1, y + 1)/4) - originalImage(x - 1, y + 1)/6 + originalImage(x + 1, y - 1)/6 - originalImage(x + 1, y + 1)/6 - y*(originalImage(x - 1, y - 1)/3 + originalImage(x - 1, y + 1)/3 + originalImage(x + 1, y - 1)/3 + originalImage(x + 1, y + 1)/3 - (2*originalImage(x, y))/3 + originalImage(x, y - 1)/3 + originalImage(x, y + 1)/3 - (2*originalImage(x - 1, y))/3 - (2*originalImage(x + 1, y))/3) - (2*y*originalImage(x, y))/3 + (y*originalImage(x, y - 1))/3 + (y*originalImage(x, y + 1))/3 - (2*y*originalImage(x - 1, y))/3 - (2*y*originalImage(x + 1, y))/3 + originalImage(x, y - 1)/6 - originalImage(x, y + 1)/6 + (x*originalImage(x - 1, y - 1))/4 - (x*originalImage(x - 1, y + 1))/4 - (x*originalImage(x + 1, y - 1))/4 + (x*originalImage(x + 1, y + 1))/4 + (y*originalImage(x - 1, y - 1))/3 + (y*originalImage(x - 1, y + 1))/3 + (y*originalImage(x + 1, y - 1))/3 + (y*originalImage(x + 1, y + 1))/3)^2);
     end
 end
